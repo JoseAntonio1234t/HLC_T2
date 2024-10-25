@@ -5,22 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script>
-        // Función para manejar el envío del formulario
+        // Función para manejar el envío del formulario  
         function mostrarDatos(event) {
             event.preventDefault(); // Evita que el formulario se envíe y la página se recargue
 
             // Obtener los valores del formulario
             var nombre = document.getElementById("nombre").value;
-            var asignatura = document.getElementById("asignatura").value;
+            var pais = document.getElementById("pais").value;
+            var edad = document.getElementById("edad").value;
             var colorFavorito = document.getElementById("color").value;
             var genero = document.querySelector('input[name="genero"]:checked').value;
+            var email = document.getElementById("email").value;
             var terminos = document.getElementById("terminos").checked;
+          
 
             // Mostrar los datos en pantalla
             var resultado = `
                 <h3>Datos Ingresados:</h3>
                 <p><strong>Nombre:</strong> ${nombre}</p>
-                <p><strong>Asignatura:</strong> ${asignatura}</p>
+                <p><strong>País:</strong> ${pais}</p>
+                <p><strong>Edad:</strong> ${edad}</p>
+                <p><strong>email:</strong> ${email}</p>
                 <p><strong>Color Favorito:</strong> <span style="background-color: ${colorFavorito}; padding: 5px; color: white;">${colorFavorito}</span></p>
                 <p><strong>Género:</strong> ${genero}</p>
                 <p><strong>Términos aceptados:</strong> ${terminos ? "Sí" : "No"}</p>
@@ -28,8 +33,8 @@
 
             // Insertar los datos en el div de resultado
             document.getElementById("resultado").innerHTML = resultado;
-        }
-    </script>
+        } 
+</script>
 </head>
 <body>
     <h2>Formulario de Registro</h2>
@@ -42,10 +47,11 @@
         <input type="password" id="contraseña" placeholder="Escriba su contraseña"><br><br>
         <label for="edad">Edad:</label>
         <input type="number" id="edad" required minlength="1" maxlength="120" autocomplete="off" placeholder="Introduzca su edad"><br><br>
-        <label for="asignatura">País:</label>
-        <select id="asignatura">
-            <option value="031">España</option>
-        </select><br><br>
+        <label id="paislabel" for="pais">País:</label>
+        <select id="pais">
+            <option value="España">Spain</option>
+        </select>
+        <br><br>
         <label for="fecha">Fecha de nacimiento:</label>
         <input type="date" id="fecha">
         <br><br>
@@ -61,6 +67,8 @@
         <label for="terminos">Acepto los términos y condiciones:</label> <br><br>
         
         <input type="submit" value="Registrarse">
+        <br><br>
+        <button type="reset" value="Reiniciar información">Reiniciar información</button>
     </form>
 
     <!-- Div donde se mostrarán los datos ingresados -->

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Realizar un Pedido</title>
+    <script>
+        function mostrarDatos(event) {
+            event.preventDefault(); // Evita el envío del formulario
+            const form = document.getElementById('pedidoForm');
+            const nombre = form.nombre.value;
+            const plato = form.plato.value;
+            const cantidad = form.cantidad.value;
+            const observaciones = form.observaciones.value;
+            const resultadoDiv = document.getElementById('resultado');
+            resultadoDiv.innerHTML = `
+                <h3>Datos del Pedido:</h3>
+                <p><strong>Nombre:</strong> ${nombre}</p>
+                <p><strong>Plato:</strong> ${plato}</p>
+                <p><strong>Cantidad:</strong> ${cantidad}</p>
+                <p><strong>Observaciones:</strong> ${observaciones}</p>
+            `;
+        }
+    </script>
+</head>
+<body>
+<!-- <form id="pedidoForm" onsubmit="mostrarDatos(event)"  -->
+<form id="pedidoForm" onsubmit="if(confirm('¿Estás seguro?')) { mostrarDatos(event); } else { event.preventDefault(); }">
+    <h3>Realizar un pedido</h3>
+    <label for="nombre">Nombre:</label>
+    <input type="text" id="nombre" required minlength="3" maxlength="50" autocomplete="off" placeholder="Escribe tu nombre completo"><br><br> 
+    <label for="Platos">Elige un plato:</label>
+    <input type="text" list="cartapedidos" name="plato" required/>
+    
+    <datalist id="cartapedidos" aria-required="true">
+      <option value="Fideuá original de la casa"></option>
+      <option value="Fideuá de marisco con fideo cabellín"></option>
+      <option value="Fideuá del señorito o del senyoret"></option>
+    </datalist>
+    </select><br><br>
+    <label for="nombre">Cantidad de pedidos:</label>
+    <input type="number" id="cantidad" required minlength="1" maxlength="10" autocomplete="off" placeholder="Escribe cuantos pedidos deseas"><br><br>
+    <label for="Observaciones">Observaciones:</label><br>
+    <textarea id="observaciones" name="observaciones" rows="5" cols="25"></textarea><br><br>  
+    <input type="submit" value="Registrarse">
+    <button type="reset" value="Reiniciar información">Reiniciar información</button>
+</form>
+<div id="resultado"></div>
+</body>
+</html>
